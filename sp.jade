@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    style(type='text/css').
+      body {
+      background-color: #f7ffc6;
+      color: #6b6060;
+      font-family: tahoma, arial, sans-serif;
+      padding-left: 100px;
+      }
+      h4 {
+      margin-bottom: 1px;
+      }
+    script(type='text/javascript', src='smoothie.js')
+    script(src="/socket.io/socket.io.js")
+    script(src="respond.js")
+    body(onload='init()')
+    h1 Mini engine testbench
+    h5 By SJTU@Summer,2015 
+    h3 Atmosphere Temperature /°C
+    canvas#Atm_t(width='400', height='120')
+    h3 Atmosphere Relative Humidity /%
+    canvas#Atm_RH(width='400', height='120')
+    h3 Atmosphere Pressure /Pa
+    canvas#Atm_p(width='400', height='120')
+    p.
