@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>MET - CALIBRATION</title>
+
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/epoch.min.css">
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="page-header">
+      <h1>MET
+        <small>Calibraiton Mode v0.01 </small>
+      </h1>
+    </div>
+
+    <nav class="navbar navbar-default">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img alt="MET" class="img-circle" width="25" height="25" src="/imgs/Logo40.png">
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="MODE-A">Mode A</a></li>
+          <li><a href="MODE-B">Mode B</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Options <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="active"><a href="#">Calibration<span class="sr-only">(current)</span></a></a>
+              </li>
+              <li><a href="#">Sensor Monitor</li>
+              <li><a href="#">Download Data</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Reset Data</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Reset All</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="row">
+
+      <!-- Motor Panel -------------------------------------------------------->
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Motor</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="motorTable">
+              <table class="table table-hover" id="dataTableMotor">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- Set Parameters -->
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="motorSpeedSetInput">motorSpeedSet:</label>
+                <script>
+                  function motorSpeedSetKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('motorSpeedSetButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="motorSpeedSetInput" onkeypress="motorSpeedSetKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="motorSpeedSetButton" onclick='emitfloatCMD("motorSpeedSet")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="motorPIDEnableFlagInput">motorPIDEnableFlag:</label>
+                <script>
+                  function motorPIDEnableFlagKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('motorPIDEnableFlagButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="motorPIDEnableFlagInput" onkeypress="motorPIDEnableFlagKeyPress(event)" autocomplete="off" placeholder="false">
+              </div>
+              <button type="button" class="btn btn-default" id="motorPIDEnableFlagButton" onclick='emitbooleanCMD("motorPIDEnableFlag")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="motorPWMInput">motorPWM:</label>
+                <script>
+                  function motorPWMKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('motorPWMButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="motorPWMInput" onkeypress="motorPWMKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="motorPWMButton" onclick='emitfloatCMD("motorPWM")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="motorPIDpInput">motorPIDp:</label>
+                <script>
+                  function motorPIDpKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('motorPIDpButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="motorPIDpInput" onkeypress="motorPIDpKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="motorPIDpButton" onclick='emitfloatCMD("motorPIDp")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="motorPIDiInput">motorPIDi:</label>
+                <script>
+                  function motorPIDiKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('motorPIDiButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="motorPIDiInput" onkeypress="motorPIDiKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="motorPIDiButton" onclick='emitfloatCMD("motorPIDi")'>Set</button>
+            </form>
+
+            <!-- Event Buttons -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startMotor")'>startMotor</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopMotor")'>stopMotor</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("inverseMotorDR")'>inverseMotorDR</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("runOneRev")'>runOneRev</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("burnGLowplug")'>burnGLowplug</button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Fan Panel ---------------------------------------------------------->
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Fan</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="fanTable">
+              <table class="table table-hover" id="dataTableFan">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- Set Parameters -->
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fanSpeedSetInput">fanSpeedSet:</label>
+                <script>
+                  function fanSpeedSetKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fanSpeedSetButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fanSpeedSetInput" onkeypress="fanSpeedSetKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fanSpeedSetButton" onclick='emitfloatCMD("fanSpeedSet")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fanPIDEnableFlagInput">fanPIDEnableFlag:</label>
+                <script>
+                  function fanPIDEnableFlagKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fanPIDEnableFlagButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fanPIDEnableFlagInput" onkeypress="fanPIDEnableFlagKeyPress(event)" autocomplete="off" placeholder="false">
+              </div>
+              <button type="button" class="btn btn-default" id="fanPIDEnableFlagButton" onclick='emitbooleanCMD("fanPIDEnableFlag")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fanPWMInput">fanPWM:</label>
+                <script>
+                  function fanPWMKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fanPWMButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fanPWMInput" onkeypress="fanPWMKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fanPWMButton" onclick='emitfloatCMD("fanPWM")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fanPIDpInput">fanPIDp:</label>
+                <script>
+                  function fanPIDpKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fanPIDpButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fanPIDpInput" onkeypress="fanPIDpKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fanPIDpButton" onclick='emitfloatCMD("fanPIDp")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fanPIDiInput">fanPIDi:</label>
+                <script>
+                  function fanPIDiKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fanPIDiButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fanPIDiInput" onkeypress="fanPIDiKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fanPIDiButton" onclick='emitfloatCMD("fanPIDi")'>Set</button>
+            </form>
+
+            <!-- Event Buttons -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startFan")'>startFan</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopFan")'>stopFan</button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+<!-- Throttle Panel -->
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Throttle</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="throttleTable">
+              <table class="table table-hover" id="dataTableThrottle">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- Set Parameters -->
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="throttleFSInput">throttleFS:</label>
+                <script>
+                  function throttleFSKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('throttleFSButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="throttleFSInput" onkeypress="throttleFSKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="throttleFSButton" onclick='emitintCMD("throttleFS")'>Set</button>
+            </form>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="throttleZeroInput">throttleZero:</label>
+                <script>
+                  function throttleZeroKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('throttleZeroButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="throttleZeroInput" onkeypress="throttleZeroKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="throttleZeroButton" onclick='emitintCMD("throttleZero")'>Set</button>
+            </form>
+
+            <!-- Event Buttons -->
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedInThrottle")'>feedInThrottle</button>
+                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedOutThrottle")'>feedOutThrottle</button>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="col-md-3">
+        <p class="text-center">
+          <strong>Resistor</strong>
+        </p>
+      </div>
+
+
+
+      <div class="col-md-6">
+        <p class="text-center">
+          <strong>Ambient Parameter</strong>
+        </p>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="Torque">
+
+      <div class="col-md-6">
+        <p class="text-center">
+          <strong>Torque</strong>
+        </p>
+      </div>
+
+
+
+
+      <div class="col-md-6">
+        <p class="text-center">
+          <strong>Fueltank Weight</strong>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="/js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/js/list.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/d3.min.js"></script>
+  <script src="/js/epoch.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/drawit-cali.js"></script>
+
+
+
+</body>
+
+</html>
