@@ -7,6 +7,8 @@ var io = require('socket.io')(server);
 var path = require('path');
 var fs = require('fs');
 
+
+var dataBuffer;
 var serialPort = new SerialPort("COM5", {
   parser: serialport.parsers.readline("\n"),
   baudrate: 9600
@@ -91,7 +93,7 @@ serialPort.open(function(error) {
       //    console.log(dataBuffer);
           socket.emit('dataishere', dataBuffer);
         } catch (e) {
-          console.log(e)
+          console.log('data emitting error'+e)
         }
       });
       serialPort.on('error', function(error) {
@@ -100,15 +102,13 @@ serialPort.open(function(error) {
       socket.on('setspeed', function(data) {
         console.log('haha' + data)
         serialPort.write(data + '\n', function(err, results) {
-          console.log('err ' + err);
-          console.log('results ' + results);
+          if (err){console.log('err ' + err);};
         })
       });
       socket.on('eventishere', function(data) {
         console.log('haha' + data)
         serialPort.write(data + '\n', function(err, results) {
-          console.log('err ' + err);
-          console.log('results ' + results);
+          if (err){console.log('err:'+err+'results:'+results);}
         })
       });
 

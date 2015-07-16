@@ -264,6 +264,12 @@ function fetchfloatCMD(){
   return floatCMDArray
 };
 
+function isInt(n) {
+   return n % 1 === 0;
+}
+
+// TODO:Arduino aJSON cannot read an integer in float form.
+// Now Avoiding this problem using a +0.01
 function emitfloatCMD(event){
 try {
   floatCMD=fetchfloatCMD();

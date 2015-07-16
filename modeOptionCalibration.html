@@ -184,11 +184,11 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startMotor")'>startMotor</button>
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopMotor")'>stopMotor</button>
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("inverseMotorDR")'>inverseMotorDR</button>
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("runOneRev")'>runOneRev</button>
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("burnGLowplug")'>burnGLowplug</button>
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("startMotor")'>Start</button>
+                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("stopMotor")'>Stop</button>
+                    <button type="button" class="btn btn-info" role="button" onclick='emitEvent("inverseMotorDR")'>InverseDR</button>
+                    <button type="button" class="btn btn-primary" role="button" onclick='emitEvent("OneRev")'>OneRev</button>
+                    <button type="button" class="btn btn-warning" role="button" onclick='emitEvent("burnGLowplug")'>Spark</button>
                   </div>
                 </div>
               </div>
@@ -441,8 +441,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("switch2ModeA")'>-->ModeA</button>
-                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("switch2ModeB")'>-->ModeB</button>
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("switch2ModeA")'>Mode A</button>
+                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("switch2ModeB")'>Mode B</button>
                   </div>
                 </div>
               </div>
@@ -456,9 +456,9 @@
     <div class="row">
       <!-- Resistor Panel -->
       <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
           <div class="panel-heading">
-            <h3 class="panel-title">Resistor</h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-plus-sign" >Resistor</h3>
           </div>
           <div class="panel-body">
 
@@ -519,8 +519,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedInResistor")'>feedInResistor</button>
-                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedOutResistor")'>feedOutResistor</button>
+                    <button type="button" class="btn btn-warning" role="button" onclick='emitEvent("feedInResistor")'>Feed In</button>
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("feedOutResistor")'>Feed Out</button>
                   </div>
                 </div>
               </div>
@@ -534,9 +534,9 @@
 
       <!-- Ambient Panel -->
       <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Ambient</h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-globe" >Ambient</h3>
           </div>
           <div class="panel-body">
 
@@ -563,9 +563,9 @@
       </div>
       <!-- Force Panel -->
       <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Force</h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-circle-arrow-down" >Force</h3>
           </div>
           <div class="panel-body">
 
@@ -584,6 +584,81 @@
                 </tbody>
               </table>
             </div>
+
+
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fueltankFSInput">fueltankFS:</label>
+                <script>
+                  function fueltankFSKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fueltankFSButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fueltankFSInput" onkeypress="fueltankFSKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fueltankFSButton" onclick='emitfloatCMD("fueltankFS")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="fueltankZeroInput">fueltankZero:</label>
+                <script>
+                  function fueltankZeroKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('fueltankZeroButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="fueltankZeroInput" onkeypress="fueltankZeroKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="fueltankZeroButton" onclick='emitfloatCMD("fueltankZero")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="armZeroInput">armZero:</label>
+                <script>
+                  function armZeroKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('armZeroButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="armZeroInput" onkeypress="armZeroKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="armZeroButton" onclick='emitfloatCMD("armZero")'>Set</button>
+            </form>
+
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="armFSInput">armFS:</label>
+                <script>
+                  function armFSKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('armFSButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="armFSInput" onkeypress="armFSKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="armFSButton" onclick='emitfloatCMD("armFS")'>Set</button>
+            </form>
+
           </div>
         </div>
 
