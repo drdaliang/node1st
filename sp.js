@@ -17,6 +17,7 @@ var serialPort = new SerialPort("COM5", {
 app.use('/js/', express.static('./js'))
 app.use('/css/', express.static('./css'))
 app.use('/imgs/', express.static('./imgs'))
+app.use('/fonts/', express.static('./fonts'))
 server.listen(8000);
 
 app.get('/', function(req, res) {

@@ -62,10 +62,11 @@
     <div class="row">
 
       <!-- Motor Panel -------------------------------------------------------->
-      <div class="col-md-6">
-        <div class="panel panel-default">
+      <div class="col-md-4">
+        <div class="panel panel-info">
           <div class="panel-heading">
-            <h3 class="panel-title">Motor</h3>
+
+            <h3 class="panel-title"><span class="glyphicon glyphicon-flash" ></span>Motor</h3>
           </div>
           <div class="panel-body">
 
@@ -107,7 +108,7 @@
 
             <form class="form-inline">
               <div class="form-group">
-                <label for="motorPIDEnableFlagInput">motorPIDEnableFlag:</label>
+                <label for="motorPIDEnableFlagInput">motorPIDEnable:</label>
                 <script>
                   function motorPIDEnableFlagKeyPress(e) {
                     e = e || window.event;
@@ -178,29 +179,31 @@
             </form>
 
             <!-- Event Buttons -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startMotor")'>startMotor</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopMotor")'>stopMotor</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("inverseMotorDR")'>inverseMotorDR</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("runOneRev")'>runOneRev</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("burnGLowplug")'>burnGLowplug</button>
+
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startMotor")'>startMotor</button>
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopMotor")'>stopMotor</button>
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("inverseMotorDR")'>inverseMotorDR</button>
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("runOneRev")'>runOneRev</button>
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("burnGLowplug")'>burnGLowplug</button>
+                  </div>
                 </div>
               </div>
+
             </div>
-
-
           </div>
         </div>
 
       </div>
 
       <!-- Fan Panel ---------------------------------------------------------->
-      <div class="col-md-6">
-        <div class="panel panel-default">
+      <div class="col-md-4">
+        <div class="panel panel-success">
           <div class="panel-heading">
-            <h3 class="panel-title">Fan</h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-asterisk" >Fan</h3>
           </div>
           <div class="panel-body">
 
@@ -242,7 +245,7 @@
 
             <form class="form-inline">
               <div class="form-group">
-                <label for="fanPIDEnableFlagInput">fanPIDEnableFlag:</label>
+                <label for="fanPIDEnableFlagInput">fanPIDEnable:</label>
                 <script>
                   function fanPIDEnableFlagKeyPress(e) {
                     e = e || window.event;
@@ -311,31 +314,31 @@
               </div>
               <button type="button" class="btn btn-default" id="fanPIDiButton" onclick='emitfloatCMD("fanPIDi")'>Set</button>
             </form>
-
-            <!-- Event Buttons -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("startFan")'>startFan</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("stopFan")'>stopFan</button>
+            <div class="panel-footer">
+              <!-- Event Buttons -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("startFan")'>Start</button>
+                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("stopFan")'>Stop</button>
+                  </div>
                 </div>
               </div>
+
             </div>
-
-
           </div>
         </div>
 
       </div>
 
-    </div>
 
-    <div class="row">
-<!-- Throttle Panel -->
-      <div class="col-md-3">
-        <div class="panel panel-default">
+
+
+      <!-- Throttle Panel -->
+      <div class="col-md-4">
+        <div class="panel panel-danger">
           <div class="panel-heading">
-            <h3 class="panel-title">Throttle</h3>
+            <h3 class="panel-title"><span class="glyphicon glyphicon-fire" >Throttle</h3>
           </div>
           <div class="panel-body">
 
@@ -393,15 +396,135 @@
             </form>
 
             <!-- Event Buttons -->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="btn-group" role="group">
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedInThrottle")'>feedInThrottle</button>
-                  <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedOutThrottle")'>feedOutThrottle</button>
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-warning" role="button" onclick='emitEvent("feedInThrottle")'>Feed In</button>
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("feedOutThrottle")'>Feed Out</button>
+                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("setThrottleZero")'>Shut</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title"><span class="glyphicon glyphicon-time" >System</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="systemTable">
+              <table class="table table-hover" id="dataTableSystem">
+                <!-- <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead> -->
+                <tbody class="list">
+                  <th class="Namee">Time</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- Set Parameters -->
+
+
+            <!-- Event Buttons -->
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-success" role="button" onclick='emitEvent("switch2ModeA")'>-->ModeA</button>
+                    <button type="button" class="btn btn-danger" role="button" onclick='emitEvent("switch2ModeB")'>-->ModeB</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <!-- Resistor Panel -->
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Resistor</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="resistorTable">
+              <table class="table table-hover" id="dataTableResistor">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+
+
+            <!-- Set Parameters -->
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="resistorFSInput">resistorFS:</label>
+                <script>
+                  function resistorFSKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('resistorFSButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="resistorFSInput" onkeypress="resistorFSKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="resistorFSButton" onclick='emitfloatCMD("resistorFS")'>Set</button>
+            </form>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="resistorZeroInput">resistorZero:</label>
+                <script>
+                  function resistorZeroKeyPress(e) {
+                    e = e || window.event;
+                    if (e.keyCode == 13) {
+                      event.preventDefault();
+                      document.getElementById('resistorZeroButton').click();
+                      return false;
+                    }
+                  }
+                </script>
+                <input type="text" class="form-control" id="resistorZeroInput" onkeypress="resistorZeroKeyPress(event)" autocomplete="off" placeholder="0">
+              </div>
+              <button type="button" class="btn btn-default" id="resistorZeroButton" onclick='emitfloatCMD("resistorZero")'>Set</button>
+            </form>
+            <div class="panel-footer">
+              <!-- Event Buttons -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedInResistor")'>feedInResistor</button>
+                    <button type="button" class="btn btn-default" role="button" onclick='emitEvent("feedOutResistor")'>feedOutResistor</button>
+                  </div>
                 </div>
               </div>
             </div>
-
 
           </div>
         </div>
@@ -409,48 +532,68 @@
       </div>
 
 
+      <!-- Ambient Panel -->
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Ambient</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="ambientTable">
+              <table class="table table-hover" id="dataTableAmbient">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
 
 
-      <div class="col-md-3">
-        <p class="text-center">
-          <strong>Resistor</strong>
-        </p>
+          </div>
+        </div>
+
+      </div>
+      <!-- Force Panel -->
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Force</h3>
+          </div>
+          <div class="panel-body">
+
+            <!-- Data Monitors -->
+            <div id="forceTable">
+              <table class="table table-hover" id="dataTableForce">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <th class="Namee">Data</th>
+                  <th class="Valuee">???</th>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-
-
-      <div class="col-md-6">
-        <p class="text-center">
-          <strong>Ambient Parameter</strong>
-        </p>
-      </div>
 
     </div>
 
 
 
-
-
-
-
-
-    <div class="Torque">
-
-      <div class="col-md-6">
-        <p class="text-center">
-          <strong>Torque</strong>
-        </p>
-      </div>
-
-
-
-
-      <div class="col-md-6">
-        <p class="text-center">
-          <strong>Fueltank Weight</strong>
-        </p>
-      </div>
-    </div>
 
   </div>
 

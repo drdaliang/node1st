@@ -132,6 +132,14 @@ var fandata=[];
 var fanList = new List('fanTable', options);
 var throttledata=[];
 var throttleList = new List('throttleTable', options);
+var resistordata=[];
+var resistorList = new List('resistorTable', options);
+var ambientdata=[];
+var ambientList = new List('ambientTable', options);
+var forcedata=[];
+var forceList = new List('forceTable', options);
+var systemdata=[];
+var systemList = new List('systemTable', options);
 function emitspeed() {
   socket.emit('setspeed', JSON.stringify({
     motorSpeedSet: Math.round(Number($('#SpeedInput').val()))
@@ -154,12 +162,12 @@ motorList.clear();
 motorList.add(motorData);
 
 fanData = [
+  {Namee: 'fanPIDEnableFlag', Valuee: booleandata[booleanDataNames['fanPIDEnableFlag']]},
   {Namee: 'fanSpeed', Valuee: floatdata[floatDataNames['fanSpeed']]},
   {Namee: 'fanSpeedSet', Valuee: floatdata[floatDataNames['fanSpeedSet']]},
   {Namee: 'fanPWM', Valuee: floatdata[floatDataNames['fanPWM']]},
   {Namee: 'fanPIDp', Valuee: floatdata[floatDataNames['fanPIDp']]},
   {Namee: 'fanPIDi', Valuee: floatdata[floatDataNames['fanPIDi']]},
-  {Namee: 'fanPIDEnableFlag', Valuee: booleandata[booleanDataNames['fanPIDEnableFlag']]},
 ];
 fanList.clear();
 fanList.add(fanData);
@@ -172,6 +180,45 @@ throttleData = [
 ];
 throttleList.clear();
 throttleList.add(throttleData);
+
+systemData = [
+  {Namee: 'Time', Valuee: SN/1000.0},
+
+];
+systemList.clear();
+systemList.add(systemData);
+
+resistorData = [
+  {Namee: 'resistorPosition', Valuee: floatdata[floatDataNames['resistorPosition']]},
+  {Namee: 'resistorZero', Valuee: floatdata[floatDataNames['resistorZero']]},
+  {Namee: 'resistorFS', Valuee: floatdata[floatDataNames['resistorFS']]},
+
+];
+resistorList.clear();
+resistorList.add(resistorData);
+
+ambientData = [
+  {Namee: 'tcTempWall', Valuee: floatdata[floatDataNames['tcTempWall']]},
+  {Namee: 'tcTempExhaust', Valuee: floatdata[floatDataNames['tcTempExhaust']]},
+  {Namee: 'ambientTemp1', Valuee: floatdata[floatDataNames['ambientTemp1']]},
+  {Namee: 'ambientTemp2', Valuee: floatdata[floatDataNames['ambientTemp2']]},
+  {Namee: 'ambientRH', Valuee: intdata[intDataNames['ambientRH']]},
+  {Namee: 'ambientP', Valuee: intdata[intDataNames['ambientP']]},
+
+];
+ambientList.clear();
+ambientList.add(ambientData);
+
+forceData = [
+  {Namee: 'fueltankWeight', Valuee: floatdata[floatDataNames['fueltankWeight']]},
+  {Namee: 'fueltankFS', Valuee: floatdata[floatDataNames['fueltankFS']]},
+  {Namee: 'fueltankZero', Valuee: floatdata[floatDataNames['fueltankZero']]},
+  {Namee: 'armForce', Valuee: floatdata[floatDataNames['armForce']]},
+  {Namee: 'armZero', Valuee: floatdata[floatDataNames['armZero']]},
+  {Namee: 'armFS', Valuee: floatdata[floatDataNames['armFS']]},
+];
+forceList.clear();
+forceList.add(forceData);
 };
 function emitEvent(event){
 try {
