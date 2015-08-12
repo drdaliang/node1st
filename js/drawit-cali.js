@@ -115,11 +115,7 @@ var floatCMD;
 var intCMD;
 var booleanCMD;
 
-var eventFlags = Array(false,false,false,false,false,
-false,false,false,false,false,
-false,false,false,false,false,
-false,false,false,false,false,
-false,false,false,false);
+var eventFlags = 0;
 
 
 var options = {
@@ -222,9 +218,9 @@ forceList.add(forceData);
 };
 function emitEvent(event){
 try {
-  eventFlags[eventFlagsNames[event]]=true;
+  eventFlags=eventFlagsNames[event];
   socket.emit('eventishere',JSON.stringify({"eventCMD":eventFlags}));
-  eventFlags[eventFlagsNames[event]]=false;
+  eventFlags = 0;
 } catch (e) {
 console.log(e)
 }
